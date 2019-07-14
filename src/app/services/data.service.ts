@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { map, catchError } from 'rxjs/operators';
-// import { scheduled } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as uuid from 'uuid/v5';
 
 import { RandomText } from '../models/random-text.model';
