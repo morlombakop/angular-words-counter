@@ -1,4 +1,4 @@
-export class RandomText { // Should it be an interface
+export interface RandomText {
   id: string;
   type: string;
   format: string;

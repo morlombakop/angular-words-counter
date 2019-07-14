@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+// import { scheduled } from 'rxjs';
 import * as uuid from 'uuid/v5';
 
 import { RandomText } from '../models/random-text.model';
@@ -17,17 +18,16 @@ export class DataService {
     return this.http.get<RandomText>(url)
       .pipe(
         map(res => {
-          const id = uuid(url, uuid.URL);
-          const randomText = { ...res, id };
+          const randomText = { ...res, id: uuid(url, uuid.URL) };
           this.addData(randomText);
-          console.log('@@@@@@', randomText.text_out.replace( new RegExp('</p>', 'g'), '@@@@@').replace(new RegExp('<p>', 'g'), '&&&&&'));
           return randomText;
         })
       );
   }
 
-  getSavedRecord(id: string): RandomText {
-    return this.clone<RandomText>(this.data.find(item => item.id === id));
+  getSavedRecord(id: string): RandomText|undefined {
+    const randomText = this.data.find(item => item.id === id);
+    return randomText ? this.clone<RandomText>(randomText) : undefined;
   }
 
   getAll(): RandomText[] {

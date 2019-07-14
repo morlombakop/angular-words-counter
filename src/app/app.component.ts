@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
 
     // validate the input text value
     this.url.valueChanges.subscribe(value => {
-      this.wordsCount = '';
+      this.outputText = '';
       if (value && isURL(value, { require_protocol: true })) {
         this.url.setErrors(null);
       } else {
@@ -53,11 +53,18 @@ export class AppComponent implements OnInit {
           outputText: res.text_out
         }))
       )
-      .subscribe(stream => {
-        if (stream.outputText) {
-          this.wordsCount = stream.wordsCount.toString();
-          this.outputText = stream.outputText;
+      .subscribe(
+        stream => {
+          if (stream.outputText) {
+            this.wordsCount = stream.wordsCount.toString();
+            this.outputText = stream.outputText;
+          }
+        },
+        // Error handler
+        () => {
+          this.wordsCount = '0';
+          this.outputText = 'Error fetching data';
         }
-      });
+      );
   }
 }
