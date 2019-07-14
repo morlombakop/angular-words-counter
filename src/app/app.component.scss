@@ -1,0 +1,51 @@
+.app-container {
+  max-width: 600px;
+  padding: 15px 20px;
+  display: block;
+  margin: 0 auto;
+  background: hsl(200, 4%, 85%);;
+
+  h1 {
+    text-align: center;
+    padding: 15px 0;
+    clear: both;
+  }
+
+  h3 { padding-bottom: 15px }
+
+  input {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid hsl(204, 3%, 67%);
+    font-size: 1rem;
+    width: calc(100% - 30px);
+  }
+
+  label {
+    font-weight: 600;
+  }
+
+  button {
+    padding: 0.5rem 0.75rem;
+    margin: 0.5rem 0.25rem;
+    text-transform: uppercase;
+    &:disabled{
+      cursor: not-allowed;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .error {
+    input {
+      border: 1px solid hsl(7, 67%, 49%);
+    }
+
+    span {
+      font-size: 0.9rem;
+      color: hsl(7, 67%, 49%);
+    }
+  }
+}

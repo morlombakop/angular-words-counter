@@ -1,0 +1,21 @@
+<div class="app-container">
+  <h1>
+    Angular  Words Count
+  </h1>
+  <form [formGroup]="form" (ngSubmit)="fetchData()" >
+    <div [ngClass]="setClassUrl()">
+      <label for="url">Url </label>
+      <input placeholder="http://example.com" type="url" class="form-control" name="url" id="url" formControlName="url" />
+      <span *ngIf="url.invalid && url.dirty">This must be a valid url with protocol</span>
+    </div>
+    <div class="btn-container">
+      <button type="submit" [disabled]="!form.valid">Submit</button>
+      <button type="reset">Reset</button>
+    </div>
+  </form>
+  <div *ngIf="wordsCount">
+    <h3>World count is: {{ wordsCount }}</h3>
+    <label>Output Text: </label>
+    <span>{{ outputText }}</span>
+  </div>
+</div>
